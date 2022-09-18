@@ -1,4 +1,44 @@
+<!--detail V 1.0  -->
 <h1>{{ question.subject }}</h1>
 <div>
     {{ question.content }}
+    {# this won't be rendered #}
 </div>
+<!--답변 조회
+등록된 답변을 질문 상세 화면에 표시하려면 -->
+<h5>{{ question.answer_set.count }}개의 답변이 있습니다.</h5>
+<div>
+    <ul>
+    {% for answer in question.answer_set.all %}
+        <li>{{ answer.content }}</li>
+    {% endfor %}
+    </ul>
+</div>
+<!--답변 등록 폼 추가 -->
+<form action="{% url 'pybo:answer_create' question.id %}" method="post">
+{% csrf_token %}
+<textarea name="content" id="content" rows="15"></textarea>
+<input type="submit" value="답변등록">
+</form>
+<!--
+csrf_token  :  보안에 관련된 항목으로 form으로 전송한 데이터가
+  실제 웹 페이지에서 작성한 데이터인지를 판단하는 가늠자 역할
+
+만약 어떤 해커가 이상한 방법으로 데이터를 전송할 경우에는
+서버에서 발행한 csrf_token 값과 해커가 일방적으로 보낸 csrf_token 값이 일치하지 않기 때문에 블록킹될 것이다.
+
+따라서 form 태그 바로 밑에 {% csrf_token %} 태그를 항상 위치시켜야 한다.
+ ( 정직하게 웹으로 타고 오지 않은 수상한 case는 미연에 방지한다.)
+
+CSRF 란 ?
+CSRF(cross site request forgery)는 웹 사이트 취약점 공격을 방지를 위해 사용하는 기술이다.
+csrf_token 사용을 위해서는 CsrfViewMiddleware 미들웨어가 필요한데
+이 미들웨어는 settings.py의 MIDDLEWARE 항목에 디폴트로 추가되어 있으므로 별도의 설정은 필요 없다.
+
+찾았다 !
+MIDDLEWARE = [
+    'django.middleware.csrf.CsrfViewMiddleware',
+    ...
+]
+
+-->

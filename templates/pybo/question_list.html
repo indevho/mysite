@@ -1,8 +1,15 @@
 {% if question_list %}
+
+    {# this won't be rendered #}
     <ul>
     {% for question in question_list %}
-        <li><a href="/pybo/{{ question.id }}/">{{ question.subject }}_{{question.create_date}}</a></li>
+        <li><a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}_{{question.create_date}}</a></li>
     {% endfor %}
+
+
+        <li  style="color:red;list-style:none;"><br/><br/>만약에  % url 'detail' question_id=question.id page=2 % 쓰면
+            <br/>오픈하는 페이지에 파라미터를 2개 전달가능!
+            <br/>단지 공백뒤에 SecondParamKeyName=SecondParamValue 추가추가해주면 됨.</li>
     </ul>
 {% else %}
     <p>질문이 없습니다.</p>
