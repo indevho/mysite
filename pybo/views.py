@@ -1,25 +1,23 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
-'''
-분명히  views.index 로 땡겨오기 때문에.. 
-'''
+# Create your views here.
+# version1  from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Question
+
+#version1  def index(request):
+#version1    return HttpResponse("안녕하세요 pybo에 오신것을 환영합니다.")
+
 def index(request):
-   return HttpResponse("안녕하세요 pybo에 오신것을 환영합니다. \n "+
-                       "나는 index 함수의 RETURN값입니다 지금은 단순 문자열로된 \n"+
-" HTTPRESPONSE")
-'''
-  개행문자가 안먹힌다 이건 HTTP쪽에서   개행문자를 다 씹어버려서 ??
-
-'''
-
-
-
-
-
-
-'''
- 만일 index 를 단일 HttpResponse 로 해버리면..
- 응~ 안통한다.  return 형태이길 원하는 것 같다. 이건 아마도 파이썬문법RULE?? 
-'''
-#index =  HttpResponse("안녕하세요 pybo에 오신것을 환영합니다. 나는 index 함수의 RETURN값입니다 지금은 단순 문자열로된
-# HTTPRESPONSE")
+    question_list = Question.objects.order_by('-create_date')
+    '''
+     question_lit 를  정렬하여 끌고오기- 정렬순이 강제된 상태..   order by 뒤를 변수화 하면 어떨까? 
+    '''
+    context = {'question_list': question_list}
+    '''
+       querySet 을  context 라는 곳에 담아버리기. ,  body에  뭉쳐담아서 response 하기 
+    '''
+    return render(request, 'pybo/question_list.html', context)
+    '''
+     question_lit 를  정렬하여 끌고오기- 정렬순이 강제된 상태..   order by 뒤를 변수화 하면 어떨까? 
+    '''

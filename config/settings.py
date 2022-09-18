@@ -33,13 +33,13 @@ ALLOWED_HOSTS = []
 #언급한 앱들 이외에 messages와 staticfiles 앱들도 추가로 보인다.
 # 이 두 개의 앱은 데이터베이스와 상관이 없는 앱이라서 위의 경고문에 포함되지 않았다.
 INSTALLED_APPS = [
+    'pybo.apps.PyboConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    ''''''
 ]
 
 MIDDLEWARE = [
@@ -111,7 +111,7 @@ LANGUAGE_CODE = 'ko-kr'
 
 
 #TIME_ZONE = 'UTC'
-TIME_ZONE = 'Asis/Seoul'
+TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
 
 USE_TZ = True
