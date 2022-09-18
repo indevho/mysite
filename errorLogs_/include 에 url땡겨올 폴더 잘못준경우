@@ -1,0 +1,82 @@
+'''
+  내가 만약 urls 를  url 로 뻥카를 치면
+  파이썬은 수차례를 시도하다가 못찾은채로 실행 뻑난다
+
+(mysite) C:\projects\mysite>python manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+====1=========
+[<URLPattern '' [name='auth_group_changelist']>, <URLPattern 'add/' [name='auth_group_add']>, <URLPattern '<path:object_id>/history/' [name='auth_group_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_group_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_group_change']>, <URLPattern '<path:object_id>/'>]
+====2=========
+[<URLPattern '' [name='auth_group_changelist']>, <URLPattern 'add/' [name='auth_group_add']>, <URLPattern '<path:object_id>/history/' [name='auth_group_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_group_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_group_change']>, <URLPattern '<path:object_id>/'>]
+====3=========
+[<URLPattern '' [name='auth_group_changelist']>, <URLPattern 'add/' [name='auth_group_add']>, <URLPattern '<path:object_id>/history/' [name='auth_group_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_group_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_group_change']>, <URLPattern '<path:object_id>/'>]
+====1=========
+[<URLPattern '<id>/password/' [name='auth_user_password_change']>, <URLPattern '' [name='auth_user_changelist']>, <URLPattern 'add/' [name='auth_user_add']>, <URLPattern '<path:object_id>/history/' [name='auth_user_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_user_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_user_change']>, <URLPattern '<path:object_id>/'>]
+====2=========
+[<URLPattern '<id>/password/' [name='auth_user_password_change']>, <URLPattern '' [name='auth_user_changelist']>, <URLPattern 'add/' [name='auth_user_add']>, <URLPattern '<path:object_id>/history/' [name='auth_user_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_user_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_user_change']>, <URLPattern '<path:object_id>/'>]
+====3=========
+[<URLPattern '<id>/password/' [name='auth_user_password_change']>, <URLPattern '' [name='auth_user_changelist']>, <URLPattern 'add/' [name='auth_user_add']>, <URLPattern '<path:object_id>/history/' [name='auth_user_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_user_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_user_change']>, <URLPattern '<path:object_id>/'>]
+====1=========
+pybo.url
+====1=========
+[<URLPattern '' [name='auth_group_changelist']>, <URLPattern 'add/' [name='auth_group_add']>, <URLPattern '<path:object_id>/history/' [name='auth_group_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_group_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_group_change']>, <URLPattern '<path:object_id>/'>]
+====2=========
+[<URLPattern '' [name='auth_group_changelist']>, <URLPattern 'add/' [name='auth_group_add']>, <URLPattern '<path:object_id>/history/' [name='auth_group_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_group_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_group_change']>, <URLPattern '<path:object_id>/'>]
+====3=========
+[<URLPattern '' [name='auth_group_changelist']>, <URLPattern 'add/' [name='auth_group_add']>, <URLPattern '<path:object_id>/history/' [name='auth_group_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_group_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_group_change']>, <URLPattern '<path:object_id>/'>]
+====1=========
+[<URLPattern '<id>/password/' [name='auth_user_password_change']>, <URLPattern '' [name='auth_user_changelist']>, <URLPattern 'add/' [name='auth_user_add']>, <URLPattern '<path:object_id>/history/' [name='auth_user_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_user_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_user_change']>, <URLPattern '<path:object_id>/'>]
+====2=========
+[<URLPattern '<id>/password/' [name='auth_user_password_change']>, <URLPattern '' [name='auth_user_changelist']>, <URLPattern 'add/' [name='auth_user_add']>, <URLPattern '<path:object_id>/history/' [name='auth_user_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_user_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_user_change']>, <URLPattern '<path:object_id>/'>]
+====3=========
+[<URLPattern '<id>/password/' [name='auth_user_password_change']>, <URLPattern '' [name='auth_user_changelist']>, <URLPattern 'add/' [name='auth_user_add']>, <URLPattern '<path:object_id>/history/' [name='auth_user_history']>, <URLPattern '<path:object_id>/delete/' [name='auth_user_delete']>, <URLPattern '<path:object_id>/change/' [name='auth_user_change']>, <URLPattern '<path:object_id>/'>]
+====1=========
+pybo.url
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+#  File "C:\Users\kim\AppData\Local\Programs\Python\Python310\lib\threading.py", line 1016, in _bootstrap_inner
+    self.run()
+#  File "C:\Users\kim\AppData\Local\Programs\Python\Python310\lib\threading.py", line 953, in run
+    self._target(*self._args, **self._kwargs)
+ # File "C:\venvs\mysite\lib\site-packages\django\utils\autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "C:\venvs\mysite\lib\site-packages\django\core\management\commands\runserver.py", line 134, in inner_run
+    self.check(display_num_errors=True)
+  File "C:\venvs\mysite\lib\site-packages\django\core\management\base.py", line 487, in check
+    all_issues = checks.run_checks(
+  File "C:\venvs\mysite\lib\site-packages\django\core\checks\registry.py", line 88, in run_checks
+    new_errors = check(app_configs=app_configs, databases=databases)
+  File "C:\venvs\mysite\lib\site-packages\django\core\checks\urls.py", line 42, in check_url_namespaces_unique
+    all_namespaces = _load_all_namespaces(resolver)
+  File "C:\venvs\mysite\lib\site-packages\django\core\checks\urls.py", line 61, in _load_all_namespaces
+    url_patterns = getattr(resolver, "url_patterns", [])
+  File "C:\venvs\mysite\lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\venvs\mysite\lib\site-packages\django\urls\resolvers.py", line 696, in url_patterns
+    patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
+  File "C:\venvs\mysite\lib\site-packages\django\utils\functional.py", line 49, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "C:\venvs\mysite\lib\site-packages\django\urls\resolvers.py", line 689, in urlconf_module
+    return import_module(self.urlconf_name)
+  File "C:\Users\kim\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "C:\projects\mysite\config\urls.py", line 23, in <module>
+    path('pybo/', include('pybo.url')),  # 마지막에 / 를 왜 해대는 걸까요 . URL을 정규화하는 장고의 기능 때문이다
+  File "C:\venvs\mysite\lib\site-packages\django\urls\conf.py", line 39, in include
+    urlconf_module = import_module(urlconf_module)
+  File "C:\Users\kim\AppData\Local\Programs\Python\Python310\lib\importlib\__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1004, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'pybo.url'
+
+'''
