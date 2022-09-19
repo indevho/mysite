@@ -1,3 +1,40 @@
+{# 스타일시트 호춣하기 공백은 꼬박꼬박 잘 넣어준다. #}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+{# 신 VERSION #}
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if question_list %}
+        {% for question in question_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+            </td>
+            <td>{{ question.create_date }}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td colspan="3">질문이 없습니다.</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>
+{# 기존 VERSION #}
+<br>
+<br>
+<br>
+<h3># 기존 VERSION #</h3>
 {% if question_list %}
 
     {# this won't be rendered #}

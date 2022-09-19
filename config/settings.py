@@ -28,6 +28,14 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+# FOR STATIC 주소
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+# BASE_DIR / 'static'은 C:\projects\mysite\static 디렉터리를 의미하므로
+
+
 # Application definition
 #설치된 앱들은 config/settings.py 파일에서 확인할 수 있다.
 #언급한 앱들 이외에 messages와 staticfiles 앱들도 추가로 보인다.
