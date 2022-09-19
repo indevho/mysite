@@ -14,10 +14,17 @@
     <title>WELCOME TO PYBO</title>
 </head>
 <body>
+<!-- 네비게이션바 START-->
+{% include "navbar.html" %}
+<!-- 네비게이션바 END -->
+
 <!-- 기본 템플릿 안에 삽입될 내용 Start  -->
 <!--block ~ endblock  구간을 무언가가 대체 하게된다 ! -->
 {% block content %}
 {% endblock %}
 <!-- 기본 템플릿 안에 삽입될 내용 End -->
+
+<!-- Bootstrap JS ( JS 는 요소형성 뒤에!! ) -->
+<script src="{% static 'bootstrap.min.js' %}"></script>
 </body>
 </html>

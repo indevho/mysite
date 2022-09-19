@@ -40,6 +40,7 @@ STATICFILES_DIRS = [
 #설치된 앱들은 config/settings.py 파일에서 확인할 수 있다.
 #언급한 앱들 이외에 messages와 staticfiles 앱들도 추가로 보인다.
 # 이 두 개의 앱은 데이터베이스와 상관이 없는 앱이라서 위의 경고문에 포함되지 않았다.
+#03-05 로그인 로그아웃 구현을위해 auth 활용! 및 새로 추가한 COMMON app의 CommonConfig 를 추가
 INSTALLED_APPS = [
     'pybo.apps.PyboConfig',
     'django.contrib.admin',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'common.apps.CommonConfig',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +61,25 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+#로그인 성공후 이동하는 URL 기본값???
+# Request URL:	http://localhost:8000/accounts/profile/
+# 로그인 성공후 이동하는 URL 새로이 설정해주기.
+LOGIN_REDIRECT_URL = '/'
+'''
+근데 또 에러가 남 왜? 
+왜냐하면 /를 의미하는 http://localhost:8000/ 페이지에 대한 URL 매핑 규칙을 작성하지 않았기 때문이다.
+ config_urls.py 를 건드려 주어야 한다
+
+
+'''
+#로그아웃 성공후 이동하는 DEFAULT URL
+#http://localhost:8000/common/logout/
+# 내가 직접설정하는 로그아웃 리다이렉트 URL
+LOGOUT_REDIRECT_URL = '/'
+
+
+
 
 ROOT_URLCONF = 'config.urls'
 
