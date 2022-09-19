@@ -6,6 +6,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Question
 from .models import Answer
+from .forms import QuestionForm, AnswerForm
+from django.http import HttpResponseNotAllowed
 #version1  def index(request):
 #version1    return HttpResponse("안녕하세요 pybo에 오신것을 환영합니다.")
 
@@ -51,11 +53,54 @@ def detail(request, question_id):
     context = {'question': question}
     return render(request, 'pybo/question_detail.html', context)
 
-def answer_create(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
+#def answer_create(request, question_id):
+#    question = get_object_or_404(Question, pk=question_id)
+#    question.answer_set.create(content=request.POST.get('content'), create_date=timezone.now())
     #answer버전!
     #answer = Answer(question=question, content=request.POST.get('content'), create_date=timezone.now())
     #answer.save()
 
-    return redirect('pybo:detail', question_id=question.id)
+#    return redirect('pybo:detail', question_id=question.id)
+
+def answer_create(request, question_id):
+    """
+    pybo 답변등록 ( 바로 위에 구버전 answer_create 있음! )
+    """
+    question = get_object_or_404(Question, pk=question_id)
+    if request.method == "POST":
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.create_date = timezone.now()
+            answer.question = question
+            answer.save()
+            return redirect('pybo:detail', question_id=question.id)
+    else:
+        return HttpResponseNotAllowed('Only POST is possible.')
+    context = {'question': question, 'form': form}
+    return render(request, 'pybo/question_detail.html', context)
+
+
+
+
+# def question_create(request):
+#     form = QuestionForm()
+#     return render(request, 'pybo/question_form.html', {'form': form})
+def question_create(request):
+    '''
+    form method="post" 로 지정 했으므로.
+    pOST 만 받는 조건을 툭 걸어준다
+    '''
+    if request.method == 'POST':
+        form = QuestionForm(request.POST)
+        if form.is_valid():
+            question = form.save(commit=False)
+            question.create_date = timezone.now()
+            #timezone.now() 라는 함수가 datetime 형식에 맞나보다
+            #>> DateTimeField
+            question.save()
+            return redirect('pybo:index')
+    else:
+        form = QuestionForm()
+    context = {'form': form}
+    return render(request, 'pybo/question_form.html', context)

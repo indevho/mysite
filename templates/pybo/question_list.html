@@ -1,6 +1,7 @@
 {# 스타일시트 호춣하기 공백은 꼬박꼬박 잘 넣어준다. #}
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+{# load static 제거한다 #}
+{% extends 'base.html' %}
+{% block content %}
 {# 신 VERSION #}
 <div class="container my-3">
     <table class="table">
@@ -17,7 +18,7 @@
         <tr>
             <td>{{ forloop.counter }}</td>
             <td>
-                <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+                <a href="{% url 'pybo:detail' question.id %}"> {{ question.subject }}  (답변갯수 : {{ question.answer_set.count }})</a>
             </td>
             <td>{{ question.create_date }}</td>
         </tr>
@@ -29,6 +30,8 @@
         {% endif %}
         </tbody>
     </table>
+        <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+
 </div>
 {# 기존 VERSION #}
 <br>
@@ -51,3 +54,6 @@
 {% else %}
     <p>질문이 없습니다.</p>
 {% endif %}
+{% endblock %}
+<!--base.html 템플릿을 상속하기 위해  extends 'base.html'  처럼 extends 템플릿 문법을 사용했다. -->
+<!--이렇게 하면 이제 question_list.html은 base.html 템플릿을 상속받아 표준 HTML문서로 바뀌게 된다.-->

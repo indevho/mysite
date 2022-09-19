@@ -1,0 +1,23 @@
+{% load static %}
+<!doctype html>
+{#파이참 커뮤니티 버전은 에디터 창의  !doctype html 부분에 오류표시가 나타난다.#}
+{# 한줄씩만 가능!! 하지만 기능상에는 전혀 문제가 없으므로 무시하면 된다.#}
+<html lang="ko">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS 공통 적용 해버리기-->
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+    <!-- pybo CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <title>WELCOME TO PYBO</title>
+</head>
+<body>
+<!-- 기본 템플릿 안에 삽입될 내용 Start  -->
+<!--block ~ endblock  구간을 무언가가 대체 하게된다 ! -->
+{% block content %}
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+</body>
+</html>
